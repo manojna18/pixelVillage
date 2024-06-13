@@ -1,0 +1,12 @@
+.map-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 520px;
+}
+
+.tile-container img {
+  flex: 1 0 45%; /* explanation below */
+  margin: 2px;
+  height: 100px;
+}
