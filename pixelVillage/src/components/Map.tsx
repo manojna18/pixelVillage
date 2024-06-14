@@ -4,27 +4,20 @@ import tile1 from "/src/assets/tile1.png";
 import tile2 from "/src/assets/tile2.png";
 import tile3 from "/src/assets/tile3.png";
 import ImprovementView from "./ImprovementsView";
+import ResourceCost from "../modules/ResourceCost";
 
 interface Prop {
   chosenResource: string;
-  resourceCost : ResourceCost;
+  resourceCost: ResourceCost;
+  benefit: string;
 }
 interface Tile {
   img: string;
   level: number;
   resource: string;
 }
-export interface ResourceCost {
-  resourceCost: {
-    lumber: number;
-    brick: number;
-    dates: number;
-    villagers: number;
-    water: number;
-  };
-}
 
-const Map = ({ chosenResource, resourceCost }: Prop) => {
+const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
   const [tiles, setTiles] = useState([
     { img: tile1, level: 1, resource: "" },
     { img: tile2, level: 1, resource: "" },
@@ -120,7 +113,8 @@ const Map = ({ chosenResource, resourceCost }: Prop) => {
         resource={chosenResource}
         tiles={tiles}
         indexClicked={tileClicked}
-        resourceCost = {resourceCost};
+        resourceCost={resourceCost}
+        benefit={benefit}
       />
     </>
   );

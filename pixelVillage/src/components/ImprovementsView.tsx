@@ -1,5 +1,5 @@
+import ResourceCost from "../modules/ResourceCost";
 import "./ImprovementView.css";
-import { ResourceCost } from "./Map";
 
 interface Tile {
   img: string;
@@ -11,6 +11,7 @@ interface Prop {
   tiles: Tile[];
   indexClicked: number;
   resourceCost: ResourceCost;
+  benefit: string;
 }
 
 const ImprovementView = ({
@@ -18,12 +19,13 @@ const ImprovementView = ({
   tiles,
   indexClicked,
   resourceCost,
+  benefit,
 }: Prop) => {
   return (
     <div className="ImprovementView">
       <p> Type: {resource}</p>
       <p>Level: {tiles[indexClicked].level}</p>
-      <p>Benefit: /*Benefit*/</p>
+      <p>Benefit: {benefit}</p>
       <p>Cost: </p>
       <div>
         <p>Brick: {resourceCost.brick}</p>

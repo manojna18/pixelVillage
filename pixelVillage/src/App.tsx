@@ -111,7 +111,11 @@ function App() {
       <p>{benefitToShow}</p>
 
       <ResourcesView resourceCost={resourceCost} />
-      <Map resourceCost={resourceCost} chosenResource={chosenResource} />
+      <Map
+        resourceCost={resourceCost}
+        chosenResource={chosenResource}
+        benefit={benefitToShow}
+      />
     </>
   );
 }
