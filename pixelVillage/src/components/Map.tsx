@@ -9,61 +9,95 @@ interface Tile {
   hasResource: boolean;
 }
 
-const tiles: Tile[] = [
-  { image: tile1, hasResource: false },
-  { image: tile2, hasResource: false },
-  { image: tile3, hasResource: false },
-  { image: tile1, hasResource: false },
-  { image: tile2, hasResource: false },
-  { image: tile3, hasResource: false },
-  { image: tile1, hasResource: false },
-  { image: tile2, hasResource: false },
-  { image: tile3, hasResource: true },
-  { image: tile1, hasResource: false },
-  { image: tile2, hasResource: false },
-  { image: tile3, hasResource: false },
-  { image: tile1, hasResource: false },
-  { image: tile2, hasResource: false },
-  { image: tile3, hasResource: false },
-  { image: tile1, hasResource: false },
-  { image: tile2, hasResource: false },
-  { image: tile3, hasResource: true },
-  { image: tile1, hasResource: false },
-  { image: tile2, hasResource: false },
-  { image: tile3, hasResource: false },
-  { image: tile1, hasResource: false },
-  { image: tile2, hasResource: false },
-  { image: tile3, hasResource: false },
-  { image: tile1, hasResource: false },
-];
-
 interface Prop {
   chosenResource: string;
 }
 
 const Map = ({ chosenResource }: Prop) => {
   const [clicked, setclicked] = useState(false);
-  let imgURL = "";
 
-  if (chosenResource === "masonry") {
-    imgURL = "src/assets/masonry.png";
-  } else if (chosenResource === "date-garden") {
-    imgURL = "src/assets/dates.png";
-  } else if (chosenResource === "house") {
-    imgURL = "src/assets/house.png";
-  } else if (chosenResource === "palm-garden") {
-    imgURL = "src/assets/oasis.png";
-  } else {
-    imgURL = "src/assets/camel.png";
-  }
+  const [tiles, setTiles] = useState([
+    { image: tile1, hasResource: false },
+    { image: tile2, hasResource: false },
+    { image: tile3, hasResource: false },
+    { image: tile1, hasResource: false },
+    { image: tile2, hasResource: false },
+    { image: tile3, hasResource: false },
+    { image: tile1, hasResource: false },
+    { image: tile2, hasResource: false },
+    { image: tile3, hasResource: true },
+    { image: tile1, hasResource: false },
+    { image: tile2, hasResource: false },
+    { image: tile3, hasResource: false },
+    { image: tile1, hasResource: false },
+    { image: tile2, hasResource: false },
+    { image: tile3, hasResource: false },
+    { image: tile1, hasResource: false },
+    { image: tile2, hasResource: false },
+    { image: tile3, hasResource: true },
+    { image: tile1, hasResource: false },
+    { image: tile2, hasResource: false },
+    { image: tile3, hasResource: false },
+    { image: tile1, hasResource: false },
+    { image: tile2, hasResource: false },
+    { image: tile3, hasResource: false },
+    { image: tile1, hasResource: false },
+  ]);
+
+  const changeImageSource = (index: number): void => {
+    console.log(chosenResource);
+    if (chosenResource === "masonry") {
+      setTiles((prev) => {
+        const copyOfTiles = prev.splice(0);
+        const copyOfTile = { ...copyOfTiles[index] };
+        copyOfTile.image = "src/assets/masonry.png";
+        copyOfTiles[index] = copyOfTile;
+        return copyOfTiles;
+      });
+    } else if (chosenResource === "date-garden") {
+      setTiles((prev) => {
+        const copyOfTiles = prev.splice(0);
+        const copyOfTile = { ...copyOfTiles[index] };
+        copyOfTile.image = "src/assets/dates.png";
+        copyOfTiles[index] = copyOfTile;
+        return copyOfTiles;
+      });
+    } else if (chosenResource === "house") {
+      setTiles((prev) => {
+        const copyOfTiles = prev.splice(0);
+        const copyOfTile = { ...copyOfTiles[index] };
+        copyOfTile.image = "src/assets/house.png";
+        copyOfTiles[index] = copyOfTile;
+        return copyOfTiles;
+      });
+    } else if (chosenResource === "palm-garden") {
+      setTiles((prev) => {
+        const copyOfTiles = prev.splice(0);
+        const copyOfTile = { ...copyOfTiles[index] };
+        copyOfTile.image = "src/assets/oasis.png";
+        copyOfTiles[index] = copyOfTile;
+        return copyOfTiles;
+      });
+    } else {
+      setTiles((prev) => {
+        const copyOfTiles = prev.splice(0);
+        const copyOfTile = { ...copyOfTiles[index] };
+        copyOfTile.image = "src/assets/camel.png";
+        copyOfTiles[index] = copyOfTile;
+        return copyOfTiles;
+      });
+    }
+  };
+
   return (
     <div className="map-container">
       {tiles.map((tile: Tile, index) => (
         <div className="tile-container" key={index}>
           <img
-            src={clicked ? imgURL : tile.image}
+            src={tile.image}
             onClick={() => {
-              setclicked(true);
+              changeImageSource(index);
+              console.log(tiles);
             }}
           />
         </div>

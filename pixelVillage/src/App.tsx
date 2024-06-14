@@ -4,7 +4,7 @@ import ResourcesView from "./components/ResourcesView";
 import { useState } from "react";
 
 function App() {
-  const [chosenResource, setChosenResource] = useState("");
+  const [chosenResource, setChosenResource] = useState("masonry");
 
   let [resourceCost, setResourceCost] = useState({
     lumber: 0,
