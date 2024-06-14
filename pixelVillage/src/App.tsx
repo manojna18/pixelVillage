@@ -2,6 +2,7 @@ import Map from "./components/Map";
 import "./App.css";
 import ResourcesView from "./components/ResourcesView";
 import { useState } from "react";
+import ImprovementView from "./components/ImprovementsView";
 
 function App() {
   const [chosenResource, setChosenResource] = useState("masonry");
@@ -108,8 +109,9 @@ function App() {
       </div>
       <h3>Benefit</h3>
       <p>{benefitToShow}</p>
+
       <ResourcesView resourceCost={resourceCost} />
-      <Map chosenResource={chosenResource} />
+      <Map resourceCost={resourceCost} chosenResource={chosenResource} />
     </>
   );
 }
