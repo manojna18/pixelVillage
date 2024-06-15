@@ -28,16 +28,16 @@ const ImprovementView = ({
       <p>Benefit: {benefit}</p>
       <p>Cost: </p>
       <div>
-        <p>Brick: {resourceCost.brick}</p>
+        <p>Gems: {resourceCost.gems}</p>
         <p>Water: {resourceCost.water}</p>
-        <p>Lumber: {resourceCost.lumber}</p>
+        <p>Lumber: {resourceCost.camels}</p>
         <p>Villagers: {resourceCost.villagers}</p>
-        <p>Dates: {resourceCost.dates}</p>
+        <p>Food: {resourceCost.food}</p>
       </div>
       <section>
         <button>Close</button>
         <button
-          onClick={(e) => {
+          onClick={() => {
             tiles[indexClicked].level++;
           }}
         >

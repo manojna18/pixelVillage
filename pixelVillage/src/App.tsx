@@ -2,15 +2,14 @@ import Map from "./components/Map";
 import "./App.css";
 import ResourcesView from "./components/ResourcesView";
 import { useState } from "react";
-import ImprovementView from "./components/ImprovementsView";
 
 function App() {
   const [chosenResource, setChosenResource] = useState("masonry");
 
   let [resourceCost, setResourceCost] = useState({
-    lumber: 0,
-    brick: 0,
-    dates: 0,
+    camels: 0,
+    gems: 0,
+    food: 0,
     villagers: 0,
     water: 0,
   });
@@ -20,42 +19,42 @@ function App() {
   const showBenefit = (chosenRes: string): void => {
     if (chosenRes === "masonry") {
       let newCost = {
-        lumber: 5,
-        brick: 0,
-        dates: 2,
+        camels: 5,
+        gems: 0,
+        food: 2,
         villagers: 2,
         water: 1,
       };
       setResourceCost(newCost);
       console.log(resourceCost);
-      setBenefitToShow("Bricks: 10");
+      setBenefitToShow("gems: 10");
     } else if (chosenRes === "house") {
       let newCost = {
-        lumber: 3,
-        brick: 4,
-        dates: 0,
+        camels: 3,
+        gems: 4,
+        food: 0,
         villagers: 0,
         water: 0,
       };
       setResourceCost(newCost);
       console.log(resourceCost);
       setBenefitToShow("Villagers:  3");
-    } else if (chosenRes === "date-garden") {
+    } else if (chosenRes === "quarry") {
       let newCost = {
-        lumber: 0,
-        brick: 0,
-        dates: 0,
+        camels: 0,
+        gems: 4,
+        food: 0,
         villagers: 5,
         water: 6,
       };
       setResourceCost(newCost);
       console.log(resourceCost);
-      setBenefitToShow("Dates: 12");
-    } else if (chosenRes === "palm-garden") {
+      setBenefitToShow("food: 12");
+    } else if (chosenRes === "settlements") {
       let newCost = {
-        lumber: 1,
-        brick: 0,
-        dates: 2,
+        camels: 1,
+        gems: 0,
+        food: 2,
         villagers: 5,
         water: 6,
       };
@@ -64,9 +63,9 @@ function App() {
       setBenefitToShow("Lumber: 8");
     } else if (chosenRes === "oasis") {
       let newCost = {
-        lumber: 8,
-        brick: 0,
-        dates: 6,
+        camels: 8,
+        gems: 0,
+        food: 6,
         villagers: 6,
         water: 0,
       };
@@ -101,8 +100,8 @@ function App() {
             <option value="masonry">Masonry</option>
             <option value="house">House</option>
             <option value="oasis">Oasis</option>
-            <option value="palm-garden">Palm Garden</option>
-            <option value="date-garden">Date Garden</option>
+            <option value="quarry">Stone mine</option>
+            <option value="settlements">Settlements</option>
           </select>
           <button type="submit">Add</button>
         </form>

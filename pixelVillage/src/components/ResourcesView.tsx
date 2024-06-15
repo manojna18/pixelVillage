@@ -3,9 +3,9 @@ import "./Resources.css";
 
 interface Prop {
   resourceCost: {
-    lumber: number;
-    brick: number;
-    dates: number;
+    camels: number;
+    gems: number;
+    food: number;
     villagers: number;
     water: number;
   };
@@ -16,11 +16,11 @@ const ResourcesView = ({ resourceCost }: Prop) => {
     <>
       <h3>Cost</h3>
       <div>
-        <p>Brick: {resourceCost.brick}</p>
+        <p>Gems: {resourceCost.gems}</p>
         <p>Water: {resourceCost.water}</p>
-        <p>Lumber: {resourceCost.lumber}</p>
+        <p>Camels: {resourceCost.camels}</p>
         <p>Villagers: {resourceCost.villagers}</p>
-        <p>Dates: {resourceCost.dates}</p>
+        <p>Food: {resourceCost.food}</p>
       </div>
     </>
   );

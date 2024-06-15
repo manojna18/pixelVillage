@@ -1,7 +1,7 @@
 export default interface ResourceCost {
-  lumber: number;
-  brick: number;
-  dates: number;
-  villagers: number;
+  camels: number;
+  gems: number;
   water: number;
+  food: number;
+  villagers: number;
 }

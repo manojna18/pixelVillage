@@ -5,8 +5,14 @@
   width: 520px;
 }
 
+.map-container img {
+  height: 100px;
+  width: 100px;
+}
+
 .tile-container img {
   flex: 1 0 45%; /* explanation below */
   margin: 2px;
   height: 100px;
+  width: 100px;
 }

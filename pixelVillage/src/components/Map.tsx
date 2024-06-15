@@ -5,6 +5,7 @@ import tile2 from "/src/assets/tile2.png";
 import tile3 from "/src/assets/tile3.png";
 import ImprovementView from "./ImprovementsView";
 import ResourceCost from "../modules/ResourceCost";
+import ResourceLine from "./ResourceLine";
 
 interface Prop {
   chosenResource: string;
@@ -52,14 +53,14 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
     if (chosenResource === "masonry") {
       setTiles((prev) => {
         let copyOfTiles = prev.slice(0);
-        copyOfTiles[index].img = "src/assets/masonry.png";
+        copyOfTiles[index].img = "src/assets/improvements/level1/Masonry.png";
         copyOfTiles[index].resource = chosenResource;
         return copyOfTiles;
       });
-    } else if (chosenResource === "date-garden") {
+    } else if (chosenResource === "settlements") {
       setTiles((prev) => {
         let copyOfTiles = prev.slice(0);
-        copyOfTiles[index].img = "src/assets/dates.png";
+        copyOfTiles[index].img = "src/assets/improvements/level1/tents.jpg";
         copyOfTiles[index].resource = chosenResource;
 
         return copyOfTiles;
@@ -67,15 +68,15 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
     } else if (chosenResource === "house") {
       setTiles((prev) => {
         let copyOfTiles = prev.slice(0);
-        copyOfTiles[index].img = "src/assets/house.png";
+        copyOfTiles[index].img = "src/assets/improvements/level1/House.png";
         copyOfTiles[index].resource = chosenResource;
 
         return copyOfTiles;
       });
-    } else if (chosenResource === "palm-garden") {
+    } else if (chosenResource === "oasis") {
       setTiles((prev) => {
         let copyOfTiles = prev.slice(0);
-        copyOfTiles[index].img = "src/assets/oasis.png";
+        copyOfTiles[index].img = "src/assets/improvements/level1/oasis-1.png";
         copyOfTiles[index].resource = chosenResource;
 
         return copyOfTiles;
@@ -83,7 +84,8 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
     } else {
       setTiles((prev) => {
         let copyOfTiles = prev.slice(0);
-        copyOfTiles[index].img = "src/assets/camel.png";
+        copyOfTiles[index].img =
+          "src/assets/improvements/level1/miningCamp.png";
         copyOfTiles[index].resource = chosenResource;
 
         return copyOfTiles;
@@ -93,8 +95,27 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
   console.log(tiles);
   const [tileClicked, setTileClicked] = useState(0);
 
+  const [resourcesOwned, setResourcesOwned] = useState({
+    camels: 5,
+    gems: 5,
+    water: 5,
+    food: 5,
+    villagers: 5,
+  });
+
+  const resourceBalance = () => {
+    return {
+      camels: resourcesOwned.camels - resourceCost.camels,
+      gems: resourcesOwned.gems - resourceCost.gems,
+      water: resourcesOwned.water - resourceCost.water,
+      food: resourcesOwned.food - resourceCost.food,
+      villagers: resourcesOwned.villagers - resourceCost.villagers,
+    };
+  };
+
   return (
     <>
+      <ResourceLine resourceBalance={resourcesOwned} />
       <div className="map-container">
         {tiles.map((tile: Tile, index: number) => (
           <div className="tile-container" key={index}>
@@ -104,6 +125,7 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
                 setTileClicked(index);
                 changeImageSource(index);
                 console.dir(tile.img);
+                setResourcesOwned(resourceBalance());
               }}
             />
           </div>
@@ -121,5 +143,3 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
 };
 
 export default Map;
-
-//todo fix the houses
