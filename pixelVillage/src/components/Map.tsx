@@ -10,51 +10,53 @@ import ResourceLine from "./ResourceLine";
 interface Prop {
   chosenResource: string;
   resourceCost: ResourceCost;
-  benefit: string;
+  benefit: ResourceCost;
 }
 interface Tile {
   img: string;
   level: number;
   resource: string;
+  className: string;
 }
 
 const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
   const [tiles, setTiles] = useState([
-    { img: tile1, level: 1, resource: "" },
-    { img: tile2, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile1, level: 1, resource: "" },
-    { img: tile2, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile1, level: 1, resource: "" },
-    { img: tile2, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile1, level: 1, resource: "" },
-    { img: tile2, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile1, level: 1, resource: "" },
-    { img: tile2, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile1, level: 1, resource: "" },
-    { img: tile2, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile1, level: 1, resource: "" },
-    { img: tile2, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
-    { img: tile3, level: 1, resource: "" },
+    { img: tile1, level: 1, resource: "", className: "" },
+    { img: tile2, level: 1, resource: "", className: "" },
+    { img: tile3, level: 1, resource: "", className: "" },
+    { img: tile1, level: 1, resource: "", className: "" },
+    { img: tile2, level: 1, resource: "", className: "" },
+    { img: tile3, level: 1, resource: "", className: "" },
+    { img: tile1, level: 1, resource: "", className: "" },
+    { img: tile2, level: 1, resource: "", className: "" },
+    { img: tile3, level: 1, resource: "", className: "" },
+    { img: tile1, level: 1, resource: "", className: "" },
+    { img: tile2, level: 1, resource: "", className: "" },
+    { img: tile3, level: 1, resource: "", className: "" },
+    { img: tile1, level: 1, resource: "", className: "" },
+    { img: tile2, level: 1, resource: "", className: "" },
+    { img: tile3, level: 1, resource: "", className: "" },
+    { img: tile1, level: 1, resource: "", className: "" },
+    { img: tile2, level: 1, resource: "", className: "" },
+    { img: tile3, level: 1, resource: "", className: "" },
+    { img: tile1, level: 1, resource: "", className: "" },
+    { img: tile2, level: 1, resource: "", className: "" },
+    { img: tile3, level: 1, resource: "", className: "" },
+    { img: tile1, level: 1, resource: "", className: "" },
+    { img: tile2, level: 1, resource: "", className: "" },
+    { img: tile3, level: 1, resource: "", className: "" },
+    { img: tile3, level: 1, resource: "", className: "" },
   ]);
 
   const changeImageSource = (index: number): void => {
     console.log(chosenResource);
-
     if (chosenResource === "masonry") {
       setTiles((prev) => {
         let copyOfTiles = prev.slice(0);
         copyOfTiles[index].img = "src/assets/improvements/level1/Masonry.png";
         copyOfTiles[index].resource = chosenResource;
+        copyOfTiles.forEach((tile) => (tile.className = ""));
+        copyOfTiles[index].className = "selected";
         return copyOfTiles;
       });
     } else if (chosenResource === "settlements") {
@@ -62,6 +64,8 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
         let copyOfTiles = prev.slice(0);
         copyOfTiles[index].img = "src/assets/improvements/level1/tents.jpg";
         copyOfTiles[index].resource = chosenResource;
+        copyOfTiles.forEach((tile) => (tile.className = ""));
+        copyOfTiles[index].className = "selected";
 
         return copyOfTiles;
       });
@@ -70,6 +74,8 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
         let copyOfTiles = prev.slice(0);
         copyOfTiles[index].img = "src/assets/improvements/level1/House.png";
         copyOfTiles[index].resource = chosenResource;
+        copyOfTiles.forEach((tile) => (tile.className = ""));
+        copyOfTiles[index].className = "selected";
 
         return copyOfTiles;
       });
@@ -78,15 +84,19 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
         let copyOfTiles = prev.slice(0);
         copyOfTiles[index].img = "src/assets/improvements/level1/oasis-1.png";
         copyOfTiles[index].resource = chosenResource;
+        copyOfTiles.forEach((tile) => (tile.className = ""));
+        copyOfTiles[index].className = "selected";
 
         return copyOfTiles;
       });
-    } else {
+    } else if (chosenResource === "quarry") {
       setTiles((prev) => {
         let copyOfTiles = prev.slice(0);
         copyOfTiles[index].img =
           "src/assets/improvements/level1/miningCamp.png";
         copyOfTiles[index].resource = chosenResource;
+        copyOfTiles.forEach((tile) => (tile.className = ""));
+        copyOfTiles[index].className = "selected";
 
         return copyOfTiles;
       });
@@ -96,26 +106,27 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
   const [tileClicked, setTileClicked] = useState(0);
 
   const [resourcesOwned, setResourcesOwned] = useState({
-    camels: 5,
-    gems: 5,
-    water: 5,
-    food: 5,
-    villagers: 5,
+    camels: 10,
+    gems: 10,
+    water: 10,
+    food: 10,
+    villagers: 10,
   });
 
   const resourceBalance = () => {
     return {
-      camels: resourcesOwned.camels - resourceCost.camels,
-      gems: resourcesOwned.gems - resourceCost.gems,
-      water: resourcesOwned.water - resourceCost.water,
-      food: resourcesOwned.food - resourceCost.food,
-      villagers: resourcesOwned.villagers - resourceCost.villagers,
+      camels: resourcesOwned.camels - resourceCost.camels + benefit.camels,
+      gems: resourcesOwned.gems - resourceCost.gems + benefit.gems,
+      water: resourcesOwned.water - resourceCost.water + benefit.water,
+      food: resourcesOwned.food - resourceCost.food + benefit.food,
+      villagers:
+        resourcesOwned.villagers - resourceCost.villagers + benefit.villagers,
     };
   };
 
   return (
     <>
-      <ResourceLine resourceBalance={resourcesOwned} />
+      <ResourceLine resourceBalance={resourcesOwned} benefit={benefit} />
       <div className="map-container">
         {tiles.map((tile: Tile, index: number) => (
           <div className="tile-container" key={index}>
@@ -127,6 +138,7 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
                 console.dir(tile.img);
                 setResourcesOwned(resourceBalance());
               }}
+              className={tile.className}
             />
           </div>
         ))}

@@ -4,7 +4,7 @@ import ResourcesView from "./components/ResourcesView";
 import { useState } from "react";
 
 function App() {
-  const [chosenResource, setChosenResource] = useState("masonry");
+  const [chosenResource, setChosenResource] = useState("defaultMsg");
 
   let [resourceCost, setResourceCost] = useState({
     camels: 0,
@@ -14,31 +14,43 @@ function App() {
     water: 0,
   });
 
-  const [benefitToShow, setBenefitToShow] = useState("");
+  const [benefitToShow, setBenefitToShow] = useState({
+    camels: 0,
+    gems: 0,
+    food: 0,
+    villagers: 0,
+    water: 0,
+  });
 
   const showBenefit = (chosenRes: string): void => {
     if (chosenRes === "masonry") {
       let newCost = {
-        camels: 5,
-        gems: 0,
+        camels: 1,
+        gems: 5,
         food: 2,
         villagers: 2,
         water: 1,
       };
       setResourceCost(newCost);
       console.log(resourceCost);
-      setBenefitToShow("gems: 10");
-    } else if (chosenRes === "house") {
-      let newCost = {
-        camels: 3,
+      setBenefitToShow({
+        camels: 0,
         gems: 4,
-        food: 0,
+        food: 3,
         villagers: 0,
         water: 0,
+      });
+    } else if (chosenRes === "house") {
+      let newCost = {
+        camels: 1,
+        gems: 4,
+        food: 0,
+        villagers: 1,
+        water: 2,
       };
       setResourceCost(newCost);
       console.log(resourceCost);
-      setBenefitToShow("Villagers:  3");
+      setBenefitToShow({ camels: 0, gems: 0, food: 0, villagers: 5, water: 0 });
     } else if (chosenRes === "quarry") {
       let newCost = {
         camels: 0,
@@ -49,7 +61,13 @@ function App() {
       };
       setResourceCost(newCost);
       console.log(resourceCost);
-      setBenefitToShow("food: 12");
+      setBenefitToShow({
+        camels: 0,
+        gems: 15,
+        food: 0,
+        villagers: 0,
+        water: 0,
+      });
     } else if (chosenRes === "settlements") {
       let newCost = {
         camels: 1,
@@ -60,7 +78,7 @@ function App() {
       };
       setResourceCost(newCost);
       console.log(resourceCost);
-      setBenefitToShow("Lumber: 8");
+      setBenefitToShow({ camels: 8, gems: 0, food: 0, villagers: 2, water: 0 });
     } else if (chosenRes === "oasis") {
       let newCost = {
         camels: 8,
@@ -71,10 +89,10 @@ function App() {
       };
       setResourceCost(newCost);
       console.log(resourceCost);
-      setBenefitToShow("Water: 7");
+      setBenefitToShow({ camels: 0, gems: 0, food: 0, villagers: 0, water: 7 });
     } else {
       console.log(resourceCost);
-      setBenefitToShow("Pick a resource from the dropdown");
+      setBenefitToShow({ camels: 0, gems: 0, food: 0, villagers: 0, water: 0 });
     }
   };
 
@@ -97,6 +115,7 @@ function App() {
               setChosenResource(e.target.value);
             }}
           >
+            <option value="defaultMsg">Select an improvement</option>
             <option value="masonry">Masonry</option>
             <option value="house">House</option>
             <option value="oasis">Oasis</option>
@@ -107,7 +126,7 @@ function App() {
         </form>
       </div>
       <h3>Benefit</h3>
-      <p>{benefitToShow}</p>
+      <p>benefitToShow</p>
 
       <ResourcesView resourceCost={resourceCost} />
       <Map

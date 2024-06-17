@@ -4,6 +4,10 @@
   flex-wrap: wrap;
   width: 520px;
 }
+.map-container .selected {
+  border: solid 2px black;
+  box-sizing: border-box;
+}
 
 .map-container img {
   height: 100px;
