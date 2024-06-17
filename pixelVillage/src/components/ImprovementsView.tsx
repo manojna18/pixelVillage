@@ -13,50 +13,37 @@ interface Prop {
   indexClicked: number;
   resourceCost: ResourceCost;
   benefit: ResourceCost;
+  upgradeTile: (index: number) => void;
 }
 
-const ImprovementView = ({
+export const ImprovementView = ({
   resource,
   tiles,
   indexClicked,
   resourceCost,
   benefit,
+  upgradeTile,
 }: Prop) => {
   const getBenefitToShow = () => {
-    if (resource === "house") {
-      return `Villagers: ${benefit.villagers}`;
-    } else if (resource === "masonry") {
-      return `Gems: ${benefit.gems}, Food: ${benefit.food}`;
-    } else if (resource === "quarry") {
-      return `Gems: ${benefit.gems}`;
-    } else if (resource === "settlements") {
-      return `Villagers: ${benefit.villagers}, Camels: ${benefit.camels}`;
-    } else {
-      return `Water: ${benefit.water}`;
-    }
+    return (
+      <>
+        <p>Villagers: {benefit.villagers}</p>
+        <p>Gems: {benefit.gems}</p>
+        <p>Food: {benefit.food} </p>
+        <p>Camels: {benefit.camels}</p>
+        <p>Water: {benefit.water}</p>
+      </>
+    );
   };
-  const [level, setLevel] = useState(1);
-
-  const changeImage = () => {
-    if (tiles[indexClicked].resource === "masonry") {
-      tiles[indexClicked].img = "src/assets/improvements/level2/solar-farm.png";
-    } else if (tiles[indexClicked].resource === "house") {
-      tiles[indexClicked].img = "src/assets/improvements/level2/fortress.png";
-    } else if (tiles[indexClicked].resource === "quarry") {
-      tiles[indexClicked].img = "src/assets/improvements/level2/quarry.png";
-    } else if (tiles[indexClicked].resource === "oasis") {
-      tiles[indexClicked].img = "src/assets/improvements/level2/Oasis-2.png";
-    } else if (tiles[indexClicked].resource === "settlements") {
-      tiles[indexClicked].img = "src/assets/improvements/level2/caravans.jpg";
-    }
-  };
+  const [level, setLevel] = useState(0);
 
   return (
     <div className="ImprovementView">
-      <p> Type: {resource}</p>
+      <p>Type: {resource}</p>
       <p>Level: {tiles[indexClicked].level}</p>
-      <p>Benefit: {getBenefitToShow()}</p>
-      <p>Cost: </p>
+      <h3>Benefit: </h3>
+      <div>{getBenefitToShow()}</div>
+      <h3>Cost: </h3>
       <div>
         <p>Gems: {resourceCost.gems}</p>
         <p>Water: {resourceCost.water}</p>
@@ -68,9 +55,8 @@ const ImprovementView = ({
         <button>Close</button>
         <button
           onClick={() => {
-            tiles[indexClicked].level = tiles[indexClicked].level + 1;
-            setLevel(tiles[indexClicked].level);
-            changeImage();
+            upgradeTile(indexClicked);
+
             console.log(tiles);
           }}
         >

@@ -124,6 +124,48 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
     };
   };
 
+  const upgradeTile = (index: number) => {
+    setTiles((prev) => {
+      const copyOfTiles = prev.slice(0);
+      const copyOfTile = { ...copyOfTiles[index] };
+      copyOfTile.level = copyOfTile.level + 1;
+      if (copyOfTile.resource === "masonry") {
+        if (copyOfTile.level === 2) {
+          copyOfTile.img = "src/assets/improvements/level2/solar-farm.png";
+        } else if (copyOfTile.level === 3) {
+          copyOfTile.img = "src/assets/improvements/level3/brick-kiln.jpg";
+        }
+      } else if (copyOfTile.resource === "house") {
+        if (copyOfTile.level === 2) {
+          copyOfTile.img = "src/assets/improvements/level2/fortress.png";
+        } else if (copyOfTile.level === 3) {
+          copyOfTile.img =
+            "src/assets/improvements/level3/community-center.jpg";
+        }
+      } else if (copyOfTile.resource === "quarry") {
+        if (copyOfTile.level === 2) {
+          copyOfTile.img = "src/assets/improvements/level2/quarry.png";
+        } else if (copyOfTile.level === 3) {
+          copyOfTile.img = "src/assets/improvements/level3/quarry.jpg";
+        }
+      } else if (copyOfTile.resource === "oasis") {
+        if (copyOfTile.level === 2) {
+          copyOfTile.img = "src/assets/improvements/level2/Oasis-2.png";
+        } else if (copyOfTile.level === 3) {
+          copyOfTile.img = "src/assets/improvements/level3/atlantis.png";
+        }
+      } else if (copyOfTile.resource === "settlements") {
+        if (copyOfTile.level === 2) {
+          copyOfTile.img = "src/assets/improvements/level2/caravans.jpg";
+        } else if (copyOfTile.level === 3) {
+          copyOfTile.img = "src/assets/improvements/level3/village.jpg";
+        }
+      }
+      copyOfTiles[index] = copyOfTile;
+      return copyOfTiles;
+    });
+  };
+
   return (
     <>
       <ResourceLine resourceBalance={resourcesOwned} benefit={benefit} />
@@ -134,7 +176,9 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
               src={tile.img}
               onClick={() => {
                 setTileClicked(index);
-                changeImageSource(index);
+                if (tile.resource === "") {
+                  changeImageSource(index);
+                }
                 console.dir(tile.img);
                 setResourcesOwned(resourceBalance());
               }}
@@ -149,6 +193,7 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
         indexClicked={tileClicked}
         resourceCost={resourceCost}
         benefit={benefit}
+        upgradeTile={upgradeTile}
       />
     </>
   );

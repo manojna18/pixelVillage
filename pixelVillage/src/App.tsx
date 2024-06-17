@@ -125,10 +125,8 @@ function App() {
           <button type="submit">Add</button>
         </form>
       </div>
-      <h3>Benefit</h3>
-      <p>benefitToShow</p>
 
-      <ResourcesView resourceCost={resourceCost} />
+      <ResourcesView resourceCost={resourceCost} benefit={benefitToShow} />
       <Map
         resourceCost={resourceCost}
         chosenResource={chosenResource}

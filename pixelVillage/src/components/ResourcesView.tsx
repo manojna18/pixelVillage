@@ -1,19 +1,28 @@
 import { useState } from "react";
 import "./Resources.css";
+import ResourceCost from "../modules/ResourceCost";
 
 interface Prop {
-  resourceCost: {
-    camels: number;
-    gems: number;
-    food: number;
-    villagers: number;
-    water: number;
-  };
+  resourceCost: ResourceCost;
+  benefit: ResourceCost;
 }
 
-const ResourcesView = ({ resourceCost }: Prop) => {
+const ResourcesView = ({ resourceCost, benefit }: Prop) => {
+  const getBenefitToShow = () => {
+    return (
+      <>
+        <p>Villagers: {benefit.villagers}</p>
+        <p>Gems: {benefit.gems}</p>
+        <p>Food: {benefit.food} </p>
+        <p>Camels: {benefit.camels}</p>
+        <p>Water: {benefit.water}</p>
+      </>
+    );
+  };
   return (
     <>
+      <h3>Benefit</h3>
+      <div>{getBenefitToShow()}</div>
       <h3>Cost</h3>
       <div>
         <p>Gems: {resourceCost.gems}</p>
