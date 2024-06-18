@@ -5,6 +5,7 @@ import gems from "/src/assets/resources/gems.png";
 import water from "/src/assets/resources/water.png";
 import villager from "/src/assets/resources/villager.png";
 import ResourceCost from "../modules/ResourceCost";
+import { useEffect, useState } from "react";
 
 interface Props {
   resourceBalance: {
@@ -25,9 +26,8 @@ const ResourceLine = ({ resourceBalance, benefit }: Props) => {
     food: resourceBalance.food,
     villagers: resourceBalance.villagers,
   };
-
-  console.log(resourceBalance);
-  {
+  const [clicked, setClicked] = useState(false);
+  useEffect(() => {
     if (
       resourceBalance2.camels < 0 ||
       resourceBalance2.gems < 0 ||
@@ -35,16 +35,21 @@ const ResourceLine = ({ resourceBalance, benefit }: Props) => {
       resourceBalance2.food < 0 ||
       resourceBalance2.villagers < 0
     ) {
-      return (
-        <>
-          <div>
-            You lose! Play again?
+      // const setClickedToTrue = () => {
+      setClicked(true);
+    }
+  }, [resourceBalance2]);
+
+  return (
+    <>
+      {clicked ? (
+        <div id="popup-container" className="overlay show">
+          <div className="popup">
+            <span className="loser-text">You lose! Play again?</span>
             <button>Play again?</button>
           </div>
-        </>
-      );
-    } else {
-      return (
+        </div>
+      ) : (
         <div className="ResourceLine">
           <img src={camel} />
           <p>{resourceBalance2.camels}</p>
@@ -57,9 +62,9 @@ const ResourceLine = ({ resourceBalance, benefit }: Props) => {
           <img src={villager} />
           <p>{resourceBalance2.villagers}</p>
         </div>
-      );
-    }
-  }
+      )}
+    </>
+  );
 };
 
 export default ResourceLine;

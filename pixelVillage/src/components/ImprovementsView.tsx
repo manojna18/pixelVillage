@@ -76,14 +76,13 @@ export const ImprovementView = ({
         <button
           onClick={() => {
             upgradeTile(indexClicked);
-
             console.log(tiles);
           }}
         >
           Upgrade
         </button>
         <button>Downgrade</button>
-        <button>Remove</button>
+        <button onClick={() => {}}>Remove</button>
       </section>
     </div>
   );
