@@ -139,6 +139,7 @@ function App() {
             benefit={benefitToShow}
             setResourceCost={setResourceCost}
           />
+
           <ResourcesView resourceCost={resourceCost} benefit={benefitToShow} />
         </div>
       </div>

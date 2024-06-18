@@ -46,7 +46,13 @@ const ResourceLine = ({ resourceBalance, benefit }: Props) => {
         <div id="popup-container" className="overlay show">
           <div className="popup">
             <span className="loser-text">You lose! Play again?</span>
-            <button>Play again?</button>
+            <button
+              onClick={() => {
+                window.location.reload();
+              }}
+            >
+              Play again?
+            </button>
           </div>
         </div>
       ) : (
