@@ -14,6 +14,7 @@ interface Prop {
   resourceCost: ResourceCost;
   benefit: ResourceCost;
   upgradeTile: (index: number) => void;
+  upgradeBenefits: ResourceCost;
 }
 
 export const ImprovementView = ({
@@ -23,36 +24,58 @@ export const ImprovementView = ({
   resourceCost,
   benefit,
   upgradeTile,
+  upgradeBenefits,
 }: Prop) => {
-  const getBenefitToShow = () => {
-    return (
-      <>
-        <p>
-          Villagers: <span>{benefit.villagers}</span>
-        </p>
-        <p>
-          Gems: <span>{benefit.gems}</span>
-        </p>
-        <p>
-          Food: <span>{benefit.food}</span>
-        </p>
-        <p>
-          Camels: <span>{benefit.camels}</span>
-        </p>
-        <p>
-          Water: <span>{benefit.water}</span>
-        </p>
-      </>
-    );
+  const getBenefitToShow = (index: number) => {
+    if (tiles[index].level === 1) {
+      return (
+        <>
+          <p>
+            Villagers: <span>{benefit.villagers}</span>
+          </p>
+          <p>
+            Gems: <span>{benefit.gems}</span>
+          </p>
+          <p>
+            Food: <span>{benefit.food}</span>
+          </p>
+          <p>
+            Camels: <span>{benefit.camels}</span>
+          </p>
+          <p>
+            Water: <span>{benefit.water}</span>
+          </p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <p>
+            Villagers: <span>{upgradeBenefits.villagers}</span>
+          </p>
+          <p>
+            Gems: <span>{upgradeBenefits.gems}</span>
+          </p>
+          <p>
+            Food: <span>{upgradeBenefits.food}</span>
+          </p>
+          <p>
+            Camels: <span>{upgradeBenefits.camels}</span>
+          </p>
+          <p>
+            Water: <span>{upgradeBenefits.water}</span>
+          </p>
+        </>
+      );
+    }
   };
-  const [level, setLevel] = useState(0);
 
   return (
     <div className="ImprovementView">
       <h3>Type: {resource}</h3>
       <p>Level: {tiles[indexClicked].level}</p>
       <h3>Benefit: </h3>
-      <div className="benefits">{getBenefitToShow()}</div>
+      <div className="benefits">{getBenefitToShow(indexClicked)}</div>
       <h3>Cost: </h3>
       <div>
         <p>

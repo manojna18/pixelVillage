@@ -137,6 +137,7 @@ function App() {
             resourceCost={resourceCost}
             chosenResource={chosenResource}
             benefit={benefitToShow}
+            setResourceCost={setResourceCost}
           />
           <ResourcesView resourceCost={resourceCost} benefit={benefitToShow} />
         </div>
