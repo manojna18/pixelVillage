@@ -1,0 +1,77 @@
+#map-resources {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  font-family: "Montserrat";
+}
+
+#map-resources header {
+  background-color: #ad5734;
+  box-shadow: 1px 0.5px #f69967;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#header-icon {
+  width: 150px;
+  height: 150px;
+}
+
+#map-resources h1 {
+  display: inline-block;
+  color: #f3e2ba;
+  font-family: "Kaushan Script";
+  font-weight: 900;
+  font-size: 45px;
+  text-shadow: 1px 1px #7e596a;
+}
+.resources {
+  width: 100vw;
+  margin: 0;
+}
+.resources h2 {
+  margin: 20px;
+  text-align: center;
+  color: #fefefe;
+}
+
+.dropdown-menu {
+  background-color: #f3e2ba;
+  align-items: center;
+  text-align: center;
+}
+
+.dropdown-menu label {
+  font-weight: 900;
+  font-family: "Gilda";
+  font-size: 20px;
+  color: #502c3c;
+}
+
+.dropdown-menu select {
+  margin: 20px;
+  font-family: "Gilda";
+  font-size: 20px;
+  background-color: #7e596a;
+  color: #f3e2ba;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.dropdown-menu option {
+  font-family: "Gilda";
+  font-size: 20px;
+  background-color: #f3e2ba;
+  color: #502c3c;
+}
+
+/* .dropdown-menu button {
+  background-color: #7e596a;
+  color: #f3e2ba;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: ;
+} */

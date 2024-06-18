@@ -1,10 +1,21 @@
 .ResourceLine img {
-  width: 80px;
-  height: 80px;
-  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  margin: 10px;
   border-radius: 50%;
+  box-shadow: 5px 1px #9c6958;
 }
 
 .ResourceLine {
   display: flex;
+  margin: 10px;
+  background-color: #503339;
+  border-radius: 20px;
+  box-shadow: 1px 1px #9c6958;
+}
+.ResourceLine p {
+  color: beige;
+  margin-right: 10px;
+  font-family: "Gilda";
+  font-size: 25px;
 }

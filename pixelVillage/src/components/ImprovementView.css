@@ -1,0 +1,27 @@
+.ImprovementView {
+  width: 200px;
+  background-color: #9c6958;
+  font-family: "Gilda";
+  font-size: 20px;
+  background-color: #502c3c;
+  color: #f3e2ba;
+  padding: 10px;
+  height: fit-content;
+  border-radius: 20px;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ImprovementView h3 {
+  background-color: #f3e2ba;
+  color: #502c3c;
+}
+
+.ImprovementView span {
+  background-color: #c1958c;
+  padding: 5px 10px;
+  color: #371927;
+  border-radius: 50%;
+}

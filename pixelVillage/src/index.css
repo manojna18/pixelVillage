@@ -1,0 +1,9 @@
+#root {
+  display: flex;
+  flex-direction: row;
+  background-image: url("src/assets/background-light.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  margin: 0;
+}

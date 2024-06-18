@@ -98,40 +98,48 @@ function App() {
 
   return (
     <>
-      <div className="resources">
-        <h2></h2>
-        <form
-          className="dropdown-menu"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <label htmlFor="dropdown">Pick a resource </label>
-          <select
-            name="resource-panel"
-            id="dropdown"
-            onChange={(e) => {
-              showBenefit(e.target.value);
-              setChosenResource(e.target.value);
+      <div id="map-resources">
+        <header>
+          <img src="src/assets/game-icon.png" id="header-icon"></img>
+          <h1>Sands of Fate</h1>
+        </header>
+        <div className="resources">
+          <h2>
+            Welcome, traveller! You start with enough resources to begin your
+            adventure. Build a village to win. Use your resources wisely!
+          </h2>
+          <form
+            className="dropdown-menu"
+            onSubmit={(e) => {
+              e.preventDefault();
             }}
           >
-            <option value="defaultMsg">Select an improvement</option>
-            <option value="masonry">Masonry</option>
-            <option value="house">House</option>
-            <option value="oasis">Oasis</option>
-            <option value="quarry">Stone mine</option>
-            <option value="settlements">Settlements</option>
-          </select>
-          <button type="submit">Add</button>
-        </form>
+            <label htmlFor="dropdown">Pick a resource </label>
+            <select
+              name="resource-panel"
+              id="dropdown"
+              onChange={(e) => {
+                showBenefit(e.target.value);
+                setChosenResource(e.target.value);
+              }}
+            >
+              <option value="defaultMsg">Select an improvement</option>
+              <option value="masonry">Masonry</option>
+              <option value="house">House</option>
+              <option value="oasis">Oasis</option>
+              <option value="quarry">Stone mine</option>
+              <option value="settlements">Settlements</option>
+            </select>
+            {/* <button type="submit">Add</button> */}
+          </form>
+          <Map
+            resourceCost={resourceCost}
+            chosenResource={chosenResource}
+            benefit={benefitToShow}
+          />
+          <ResourcesView resourceCost={resourceCost} benefit={benefitToShow} />
+        </div>
       </div>
-
-      <ResourcesView resourceCost={resourceCost} benefit={benefitToShow} />
-      <Map
-        resourceCost={resourceCost}
-        chosenResource={chosenResource}
-        benefit={benefitToShow}
-      />
     </>
   );
 }

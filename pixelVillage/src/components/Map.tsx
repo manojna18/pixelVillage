@@ -167,9 +167,9 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
   };
 
   return (
-    <>
-      <ResourceLine resourceBalance={resourcesOwned} benefit={benefit} />
+    <div className="grid">
       <div className="map-container">
+        <ResourceLine resourceBalance={resourcesOwned} benefit={benefit} />
         {tiles.map((tile: Tile, index: number) => (
           <div className="tile-container" key={index}>
             <img
@@ -195,7 +195,7 @@ const Map = ({ chosenResource, resourceCost, benefit }: Prop) => {
         benefit={benefit}
         upgradeTile={upgradeTile}
       />
-    </>
+    </div>
   );
 };
 
