@@ -20,7 +20,7 @@
 .grid {
   width: 100vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 
 .tile-container {
